@@ -45,19 +45,19 @@ CREATE TABLE dept_emp(
 );
 
 CREATE TABLE titles(
-	emp_title_id INT NOT NULL,
+	emp_id INT NOT NULL,
 	title VARCHAR(30) NOT NULL,
 	from_date DATE NOT NULL,
 	to_date DATE NOT NULL,
-	FOREIGN KEY (emp_title_id) REFERENCES employees(emp_no)
+	FOREIGN KEY (emp_id) REFERENCES employees(emp_no)
 );
 
 CREATE TABLE salaries(
-	emp_salary_id INT NOT NULL,
+	emp_id INT NOT NULL,
 	salary INT NOT NULL,
 	from_date DATE NOT NULL,
 	to_date DATE NOT NULL,
-	FOREIGN KEY (emp_salary_id) REFERENCES employees(emp_no)
+	FOREIGN KEY (emp_id) REFERENCES employees(emp_no)
 );
 
 COPY employees FROM 'C:\sql_hw_data/employees.csv' DELIMITER ',' CSV HEADER;
@@ -73,7 +73,7 @@ COPY titles FROM 'C:\sql_hw_data/titles.csv' DELIMITER ',' CSV HEADER;
 SELECT e.emp_no, e.last_name, e.first_name, e.gender, s.salary
 FROM employees as e
 INNER JOIN salaries as s 
-	ON e.emp_no = s.emp_salary_id;
+	ON e.emp_no = s.emp_id;
 
 
 
